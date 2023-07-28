@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit/";
 
-export const giveLinkSlice = createSlice({
-    name: "giveLink",
+export const dharmaSlice = createSlice({
+    name: "dharma",
     initialState: {
         account: {},
         giveAway: {
@@ -11,8 +11,10 @@ export const giveLinkSlice = createSlice({
             charge: 0,
             message: '',
         },
+        card: '',
         cards: [],
-        lasTransaction: {}
+        lasTransaction: {},
+        transactionsResume: {}
     },
     reducers: {
         getAccount: (state, { payload }) => {
@@ -33,11 +35,17 @@ export const giveLinkSlice = createSlice({
         setGiveAwayMessage: (state, { payload }) => {
             state.giveAway.message = payload;
         },
+        getUserCard: (state, { payload }) => {
+            state.card = payload;
+        },
         getCards: (state, { payload }) => {
             state.cards = payload;
         },
         setLastTransaction: (state, { payload }) => {
             state.lasTransaction = payload;
+        },
+        setTransactionResume: (state, { payload }) => {
+            state.transactionsResume = payload;
         }
     }
 });
@@ -49,6 +57,8 @@ export const {
     setGiveAwayMessage,
     setGiveAwayReceiver,
     setGiveAwayReceiverCard,
+    getUserCard,
     getCards,
-    setLastTransaction
-} = giveLinkSlice.actions;
+    setLastTransaction,
+    setTransactionResume
+} = dharmaSlice.actions;

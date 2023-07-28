@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { giveLinkSlice } from "./slice";
+import { dharmaSlice } from "./slice";
 
 export default configureStore({
     reducer: {
-        giveLink: giveLinkSlice.reducer
+        dharma: dharmaSlice.reducer
     },
 });

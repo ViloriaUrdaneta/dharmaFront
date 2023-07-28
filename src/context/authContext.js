@@ -1,5 +1,4 @@
-import React from 'react'
-import { useReducer, createContext, useEffect } from 'react';
+import React, { useReducer, createContext, useEffect } from 'react';
 import { decodeToken } from 'react-jwt';
 
 export const AuthContext = createContext();
@@ -36,7 +35,7 @@ export const AuthContextProvider = ({ children }) => {
         dispatch({ type: 'LOGIN', payload: token });
         dispatch({ type: 'DATAUSER', payload: decodedToken });
     }, []);
-    
+
     return (
         <AuthContext.Provider value={{ ...state, dispatch }}>
             {children}

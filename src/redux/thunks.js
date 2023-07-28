@@ -1,8 +1,10 @@
 import { 
     account, 
+    card,
     cards, 
     recharge,
-    gift
+    gift,
+    resumeAccount
 } from '../utils/axiosService'
 import {
     getAccount,
@@ -11,8 +13,10 @@ import {
     setGiveAwayReceiver,
     setGiveAwayReceiverCard,
     setGiveAwaySender,
+    getUserCard,
     getCards,
-    setLastTransaction
+    setLastTransaction,
+    setTransactionResume
 } from './slice'
 
 export const userAccount = (id, token) => async (dispatch) => {
@@ -77,11 +81,35 @@ export const giveAwayMessage = (message) => (dispatch) => {
     dispatch(setGiveAwayMessage(message))
 };
 
-export const bringCards = () => async (dispatch) => {
+export const bringUserCard = (id, token) => async (dispatch) => {
+
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token
+        },
+    }
     try {
-        const response = await cards();
+        const response = await card(id, config);
         if (response.status === 200) {
-            dispatch(getCards(response.data));
+            dispatch(getUserCard(response.data.card));
+        }
+    } catch (error) {
+        alert('error: ', error);
+        console.log('error en catch', error);
+    }
+};
+
+export const bringCards = (id, token) => async (dispatch) => {
+
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token
+        },
+    }
+    try {
+        const response = await cards(id, config);
+        if (response.status === 200) {
+            dispatch(getCards(response.data.randomCards));
         }
     } catch (error) {
         alert('error: ', error);
@@ -104,12 +132,30 @@ export const sendGiveAway = (giveAway, token) => async (dispatch) => {
         charge: parseInt(charge),
         message
     };
-    console.log(data)
 
     try {
         const response = await gift(data, config);
         if (response.status === 200) {
             dispatch(setLastTransaction(response.data));
+        }
+    } catch (error) {
+        alert('error: ', error);
+        console.log('error en catch', error);
+    }
+};
+
+export const userResume = (id, token) => async (dispatch) => {
+
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token
+        },
+    }
+
+    try {
+        const response = await resumeAccount(id, config);
+        if (response.status === 200) {
+            dispatch(setTransactionResume(response.data));
         }
     } catch (error) {
         alert('error: ', error);

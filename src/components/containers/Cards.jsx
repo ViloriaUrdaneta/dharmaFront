@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { AuthContext } from '../../context/authContext';
 import { bringCards, giveAwayReceiver, giveAwayReceiverCard } from '../../redux/thunks';
 import '../../App.css';
 import Card from '../pure/Card';
 
 const Cards = () => {
 
-    const cards = useSelector((state) => state.giveLink.cards);
+    const { user, token } = useContext(AuthContext)
+    const cards = useSelector((state) => state.dharma.cards);
     const dispatch = useDispatch();
     const [deck, setDeck] = useState([]);
     const link = '/confirm'
 
     useEffect(() => {
-        dispatch(bringCards())
+        dispatch(bringCards(user.id, token))
     }, [dispatch]);
 
     useEffect(() => {
@@ -25,6 +27,8 @@ const Cards = () => {
         dispatch(giveAwayReceiver(card.id))
         dispatch(giveAwayReceiverCard(card.card))
     };
+
+    console.log(deck)
 
     return (
         <div className='App'>

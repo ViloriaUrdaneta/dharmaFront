@@ -9,7 +9,7 @@ const Rules = () => {
                     <h3 className='mt-5 subtitle2'>Reglas</h3>
                 </div>
                 <p className='subtitle3 mt-5 mb-5'>
-                    GiveLink es una aplicación para dar y recibir regalos en forma de pequeñas sumas de dinero de forma desinteresada, aleatorea y anónima
+                    Dharma es una aplicación para dar y recibir regalos en forma de pequeñas sumas de dinero de forma desinteresada, aleatorea y anónima
                     <br/><br/>
                     Para participar debes seguir los siguientes pasos:
                     <br/><br/>

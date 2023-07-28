@@ -13,7 +13,7 @@ const Message = () => {
     const dispatch = useDispatch();
     const [message, setMessage] = useState('');
     const [openModal, setOpenModal] = useState(false);
-    const giveAway = useSelector((state) => state.giveLink.giveAway);
+    const giveAway = useSelector((state) => state.dharma.giveAway);
 
     const handleMessage = () => {
         dispatch(giveAwayMessage(message));

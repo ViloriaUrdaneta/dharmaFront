@@ -7,6 +7,14 @@
   justify-content: start;
 }
 
+.App2 {
+  padding-top: 14rem;
+  background-color: #FFF9F3;
+  min-height: 100vh;
+  display: flex;
+  justify-content: start;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -51,7 +59,7 @@
 
 .balance{
   color: #FF31AD;
-  font-size: 72px;
+  font-size: 50px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-weight: bold;
 }
@@ -271,6 +279,38 @@
 
 .modal-content{
   background-color:  #FFF9F3;
-  height: 20rem;
-  width: 18rem;
+  height: 26rem;
+  width: 24rem;
+  font-size: 22px;
 }
+
+.modal-body{
+  background-color:  #FFF9F3;
+  height: 26rem;
+  width: 20rem;
+  font-size: 22px;
+}
+
+.total{
+  display: flex;
+  flex-direction: column;
+  height: 10rem;
+  border-color: #FF31AD;
+  background-color: transparent; 
+  border-radius: 5px;
+}
+
+.tabla{
+  --bs-table-bg: #FFF9F3 !important;
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.cardTable{
+  background-color:  #FFF9F3;
+}
+
+thead{
+  font-size: 22px;
+}
+
