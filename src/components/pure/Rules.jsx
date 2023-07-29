@@ -25,7 +25,7 @@ const Rules = () => {
                     <br/><br/>
                     6.- Puedes hacer la cantidad de regalos que desees
                     <br/><br/>
-                    GiveLink es una aplicación para poner a prueba la ley del Dharma y comprobar que cuanto más das, más recibes.
+                    Dharma es una aplicación para poner a prueba la ley del Dharma y comprobar que cuanto más das, más recibes.
                 </p>
                 <p className='subtitle2 mb-5'>♥♣♦♠</p>
             </div>

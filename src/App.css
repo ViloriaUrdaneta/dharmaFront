@@ -308,6 +308,8 @@
 
 .cardTable{
   background-color:  #FFF9F3;
+  border-color: #FF31AD;
+  border-radius: 10px;
 }
 
 thead{

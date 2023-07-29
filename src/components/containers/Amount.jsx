@@ -1,21 +1,54 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { giveAwayCharge } from '../../redux/thunks';
+import React, { useState, useEffect, useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AuthContext } from '../../context/authContext';
+import { giveAwayCharge, userAccount } from '../../redux/thunks';
 import '../../App.css';
-import { Link } from 'react-router-dom';
+import { numberWithDots } from '../../utils/numberWithDot';
+import ErrorModal from '../modals/ErrorModal';
+import { useNavigate } from 'react-router-dom';
 
 const Amount = () => {
 
     const dispatch = useDispatch();
     const [amount, setAmount] = useState(0);
+    const { user, token } = useContext(AuthContext)
+    const account = useSelector((state) => state.dharma.account);
+    const [monto, setMonto] = useState(0);
+    const [openModal, setOpenModal] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        dispatch(userAccount(user.id, token))
+    }, [dispatch])
+
+    useEffect(() => {
+        if (account && account.amount !== undefined) {
+            setMonto(account.amount);
+        }
+    }, [account]);
+
 
     const handleAmount = () => {
-        dispatch(giveAwayCharge(amount))
+        if(amount <= monto){
+            console.log(amount)
+            dispatch(giveAwayCharge(amount));
+            navigate('/cards');
+        }else{
+            setOpenModal(true)
+        }
     }
 
     return (
         <div className='App'>
             <div className='container'>
+                {openModal && 
+                    <ErrorModal 
+                        setOpenModal={setOpenModal} 
+                    />
+                }
+                <div className='row mb-5'>
+                    <p className='subtitle'>Tu saldo actual es: <span className='balance'>{numberWithDots(monto)}</span> </p>
+                </div>
                 <div className='row'>
                     <div className='col-6'>
                         <input 
@@ -27,18 +60,16 @@ const Amount = () => {
                         <p className='subtitle'>Elige un monto</p>
                     </div>
                     <div className='col-6'>
-                        <Link to="/cards" className='boton'>
-                            <div className='d-grid d-md-flex justify-content-md-end'>
-                                <div className='d-grid col-4 mt-4 text-end '>
-                                    <button 
-                                        className="btn btn-outline-danger btn-lg boton shadow shadow-sm"
-                                        onClick={handleAmount}
-                                    >
-                                        Siguiente
-                                    </button>
-                                </div>
+                        <div className='d-grid d-md-flex justify-content-md-end'>
+                            <div className='d-grid col-4 mt-4 text-end '>
+                                <button 
+                                    className="btn btn-outline-danger btn-lg boton shadow shadow-sm"
+                                    onClick={handleAmount}
+                                >
+                                    Siguiente
+                                </button>
                             </div>
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </div>

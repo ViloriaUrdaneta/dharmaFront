@@ -4,8 +4,7 @@ import { AuthContext } from '../../context/authContext';
 import { giveAwayMessage, giveAwaySender, sendGiveAway } from '../../redux/thunks';
 import ConfirmModal from '../modals/ConfirmModal'
 import '../../App.css';
-import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const Message = () => {
 
@@ -14,6 +13,7 @@ const Message = () => {
     const [message, setMessage] = useState('');
     const [openModal, setOpenModal] = useState(false);
     const giveAway = useSelector((state) => state.dharma.giveAway);
+    const navigate = useNavigate();
 
     const handleMessage = () => {
         dispatch(giveAwayMessage(message));
@@ -23,7 +23,8 @@ const Message = () => {
 
     const handleConfirm = () => {
         dispatch(sendGiveAway(giveAway, token));
-        setOpenModal(false)
+        setOpenModal(false);
+        navigate('/');
     }
 
     return (
@@ -48,18 +49,16 @@ const Message = () => {
                         <p className='subtitle'>Deja un mensaje y confirma el regalo</p>
                     </div>
                     <div className='col-6'>
-
-                            <div className='d-grid d-md-flex justify-content-md-end'>
-                                <div className='d-grid col-4 mt-4 text-end '>
-                                    <button 
-                                        className="btn btn-outline-danger btn-lg boton shadow shadow-sm"
-                                        onClick={handleMessage}
-                                    >
-                                        Confirmar
-                                    </button>
-                                </div>
+                        <div className='d-grid d-md-flex justify-content-md-end'>
+                            <div className='d-grid col-4 mt-4 text-end '>
+                                <button 
+                                    className="btn btn-outline-danger btn-lg boton shadow shadow-sm"
+                                    onClick={handleMessage}
+                                >
+                                    Confirmar
+                                </button>
                             </div>
-                        
+                        </div>
                     </div>
                 </div>
             </div>

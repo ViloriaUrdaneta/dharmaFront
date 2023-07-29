@@ -27,8 +27,7 @@ const Cards = () => {
         dispatch(giveAwayReceiver(card.id))
         dispatch(giveAwayReceiverCard(card.card))
     };
-
-    console.log(deck)
+    
 
     return (
         <div className='App'>
