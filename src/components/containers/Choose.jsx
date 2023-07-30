@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 import { pickCard } from '../../utils/axiosService';
+import { useDispatch } from 'react-redux';
+import { giveAwaySenderCard } from '../../redux/thunks';
 import '../../App.css';
 import Card from '../pure/Card';
 
 const Choose = () => {
 
     const { user, token, dispatch } = useContext(AuthContext)
+    const reduxDispatch = useDispatch();
     const link = '/amount'
     let cards = [
         {
@@ -48,7 +51,8 @@ const Choose = () => {
                 }})
             .catch((error) => {
                 alert('error: ', error)
-            })
+            });
+        reduxDispatch(giveAwaySenderCard(card.card));
     };
 
     return (

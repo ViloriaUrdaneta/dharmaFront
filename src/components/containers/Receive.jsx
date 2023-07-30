@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/authContext.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { userPendings, lastGiftReceived } from '../../redux/thunks';
 import '../../App.css';
-import { Link } from 'react-router-dom';
+
 
 const Recieve = () => {
 
@@ -13,14 +13,13 @@ const Recieve = () => {
     const dispatch = useDispatch();
     const [message, setMessage] = useState('');
 
+    const handleGift = () => {
+        dispatch(lastGiftReceived(pendings.transactions[0].id, message, token))
+    }
+
     useEffect(() => {
         dispatch(userPendings(user.id, token))
     }, [dispatch, handleGift]);
-
-    const handleGift = () => {
-        dispatch(lastGiftReceived(pendings.transactions[0].id, message, token))
-        console.log(lastGift)
-    }
 
     return (
         <div className='App'>
@@ -57,7 +56,3 @@ const Recieve = () => {
 export default Recieve;
 
 
-
-/**
- *  <input type="text" className="form-control col-md-4 mt-3 input centered-placeholder" placeholder='Agradécelo para recibirlo'/>
- */

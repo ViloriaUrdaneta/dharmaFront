@@ -13,6 +13,7 @@ import {
     setGiveAwayCharge,
     setGiveAwayMessage,
     setGiveAwayReceiver,
+    setGiveAwaySenderCard,
     setGiveAwayReceiverCard,
     setGiveAwaySender,
     getUserCard,
@@ -73,6 +74,10 @@ export const giveAwayReceiver = (id) => (dispatch) => {
     dispatch(setGiveAwayReceiver(id))
 };
 
+export const giveAwaySenderCard = (card) => (dispatch) => {
+    dispatch(setGiveAwaySenderCard(card))
+};
+
 export const giveAwayReceiverCard = (card) => (dispatch) => {
     dispatch(setGiveAwayReceiverCard(card))
 };
@@ -128,11 +133,13 @@ export const sendGiveAway = (giveAway, token) => async (dispatch) => {
             Authorization: "Bearer " + token
         },
     }
-    const { sender, receiver, charge, message } = giveAway;
+    const { sender, receiver, senderCard, receiverCard, charge, message } = giveAway;
 
     const data = {
         sender,
         receiver,
+        senderCard,
+        receiverCard,
         charge: parseInt(charge),
         message
     };

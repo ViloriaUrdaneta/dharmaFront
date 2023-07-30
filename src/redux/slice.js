@@ -7,6 +7,7 @@ export const dharmaSlice = createSlice({
         giveAway: {
             sender: 0,
             receiver: 0,
+            senderCard: '',
             receiverCard: '',
             charge: 0,
             message: '',
@@ -27,6 +28,9 @@ export const dharmaSlice = createSlice({
         },
         setGiveAwayReceiver: (state, { payload }) => {
             state.giveAway.receiver = payload;
+        },
+        setGiveAwaySenderCard: (state, { payload }) => {
+            state.giveAway.senderCard = payload;
         },
         setGiveAwayReceiverCard: (state, { payload }) => {
             state.giveAway.receiverCard = payload;
@@ -64,6 +68,7 @@ export const {
     setGiveAwayCharge,
     setGiveAwayMessage,
     setGiveAwayReceiver,
+    setGiveAwaySenderCard,
     setGiveAwayReceiverCard,
     getUserCard,
     getCards,
