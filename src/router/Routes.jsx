@@ -5,7 +5,7 @@ import { AuthContext } from '../context/authContext';
 import Amount from '../components/containers/Amount';
 import Cards from '../components/containers/Cards';
 import Message from '../components/containers/Message';
-import Recieve from '../components/containers/Recieve';
+import Receive from '../components/containers/Receive';
 import Choose from '../components/containers/Choose';
 import ProtectedRoutes from './ProtectedRoute';
 import Dashboard from './Dashboard';
@@ -48,14 +48,6 @@ const RoutesApp = () => {
                         }
                     />
                     <Route
-                        path="/recieve"
-                        element={
-                        <ProtectedRoutes isAutenticated={token}>
-                            <Recieve/>
-                        </ProtectedRoutes>
-                        }
-                    />
-                    <Route
                         path="/choose"
                         element={
                         <ProtectedRoutes isAutenticated={token}>
@@ -68,6 +60,14 @@ const RoutesApp = () => {
                         element={
                         <ProtectedRoutes isAutenticated={token}>
                             <Balance/>
+                        </ProtectedRoutes>
+                        }
+                    />
+                    <Route
+                        path="/receive"
+                        element={
+                        <ProtectedRoutes isAutenticated={token}>
+                            <Receive/>
                         </ProtectedRoutes>
                         }
                     />

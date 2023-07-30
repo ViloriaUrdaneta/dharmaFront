@@ -38,8 +38,6 @@ const Balance = () => {
     }, [account]);
 
     const data = resume.trans
-    console.log(data)
-    console.log(numberWithDots(resume.totalIncomes))
 
     return (
         <div className='App2'>

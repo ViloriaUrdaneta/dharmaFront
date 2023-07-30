@@ -32,3 +32,11 @@ export function pickCard(data, config){
 export function resumeAccount(id, config){
     return API.get(`/transaction/resume/${id}`, config);
 }
+
+export function pendingsReceives(id, config){
+    return API.get(`/transaction/pendingReceived/${id}`, config);
+}
+
+export function receive(data, config){
+    return API.put('/transaction/receive', data, config);
+}

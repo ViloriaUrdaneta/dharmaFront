@@ -14,7 +14,9 @@ export const dharmaSlice = createSlice({
         card: '',
         cards: [],
         lasTransaction: {},
-        transactionsResume: {}
+        transactionsResume: {},
+        pendings: {},
+        lastReception: {}
     },
     reducers: {
         getAccount: (state, { payload }) => {
@@ -46,7 +48,13 @@ export const dharmaSlice = createSlice({
         },
         setTransactionResume: (state, { payload }) => {
             state.transactionsResume = payload;
-        }
+        },
+        getPendings: (state, { payload }) => {
+            state.pendings = payload;
+        },
+        getLastReception: (state, { payload }) => {
+            state.lastReception = payload;
+        },
     }
 });
 
@@ -60,5 +68,7 @@ export const {
     getUserCard,
     getCards,
     setLastTransaction,
-    setTransactionResume
+    setTransactionResume,
+    getPendings,
+    getLastReception
 } = dharmaSlice.actions;

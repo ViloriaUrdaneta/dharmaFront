@@ -4,7 +4,9 @@ import {
     cards, 
     recharge,
     gift,
-    resumeAccount
+    resumeAccount,
+    pendingsReceives,
+    receive
 } from '../utils/axiosService'
 import {
     getAccount,
@@ -16,7 +18,9 @@ import {
     getUserCard,
     getCards,
     setLastTransaction,
-    setTransactionResume
+    setTransactionResume,
+    getPendings,
+    getLastReception
 } from './slice'
 
 export const userAccount = (id, token) => async (dispatch) => {
@@ -156,6 +160,51 @@ export const userResume = (id, token) => async (dispatch) => {
         const response = await resumeAccount(id, config);
         if (response.status === 200) {
             dispatch(setTransactionResume(response.data));
+        }
+    } catch (error) {
+        alert('error: ', error);
+        console.log('error en catch', error);
+    }
+};
+
+export const userPendings = (id, token) => async (dispatch) => {
+
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token
+        },
+    }
+
+    try {
+        const response = await pendingsReceives(id, config);
+        if (response.status === 200) {
+            dispatch(getPendings(response.data));
+        } else {
+            console.log("No hay valores de pendings disponibles.");
+        }
+    } catch (error) {
+        
+        console.log('epa', error);
+    }
+};
+
+export const lastGiftReceived = (transactionId, message, token) => async (dispatch) => {
+
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token
+        },
+    }
+
+    const data = {
+        transactionId,
+        message
+    };
+
+    try {
+        const response = await receive(data, config);
+        if (response.status === 200) {
+            dispatch(getLastReception(response.data));
         }
     } catch (error) {
         alert('error: ', error);
