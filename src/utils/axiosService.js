@@ -5,6 +5,10 @@ export function login(email, password){
     return API.post('/auth/login', { email, password });
 }
 
+export function register(email, password){
+    return API.post('/auth/register', { email, password });
+}
+
 export function account(id, config){
     return API.get(`/account/${id}`, config);
 }

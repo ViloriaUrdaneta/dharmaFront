@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { login } from '../../utils/axiosService';
+import { login, register } from '../../utils/axiosService';
 import LoginCard from '../pure/LoginCard';
 import { decodeToken } from 'react-jwt';
 import { AuthContext } from '../../context/authContext';
@@ -10,6 +10,8 @@ const Login = () => {
     const [registerForm, setRegisterForm] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [message, setMessage] = useState('');
     const { dispatch } = useContext(AuthContext);
 
 
@@ -25,18 +27,39 @@ const Login = () => {
                     window.location.reload(); 
                 }})
             .catch((error) => {
-                alert('error: ', error)
-            })
-        setEmail('')
-        setPassword('')
+                alert('error: ', error);
+                setMessage('Error en el login');
+            });
+        setEmail('');
+        setPassword('');
     }
 
     const handleRegister = () => {
         if(!registerForm){
             setRegisterForm(true)
         }else {
-            setRegisterForm(false)
+            if(password === confirmPassword){
+                register(email, password)
+                    .then((response) => {
+                        if(response.status === 200){
+                            setMessage(response.data.message);
+                        }})
+                    .catch((error) => {
+                        alert('error: ', error)
+                        setMessage('Error en el registro');
+                    })
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+            setRegisterForm(false);
+            } else{
+                setMessage('Contraseñas no coinciden');
+            }
         }
+    }
+
+    const handleCameBack = () => {
+        setRegisterForm(false);
     }
 
     return (
@@ -90,11 +113,12 @@ const Login = () => {
                                             type="password" 
                                             className="form-control col-md-4 mt-2 input" 
                                             placeholder='Confirmar password'
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
                                         />
                                         <hr className='line' />
                                         <button className='btn btn-outline-danger btn-lg boton2 shadow shadow-sm mt-3' onClick={handleRegister}>Registrarse</button>
+                                        <button className='btn btn-outline-danger btn-lg boton2 shadow shadow-sm mt-3' onClick={handleCameBack}>Volver</button>
                                     </div>
                                 )}
                         </div>

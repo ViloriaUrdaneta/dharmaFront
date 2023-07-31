@@ -46,11 +46,12 @@ const Choose = () => {
         };
         pickCard(data, config)
             .then((response) => {
+                console.log(response)
                 if(response.status === 200){
                     dispatch({ type: 'DATAUSER', payload: response.data.user });
                 }})
             .catch((error) => {
-                alert('error: ', error)
+                alert('error: pickCardError ', error)
             });
         reduxDispatch(giveAwaySenderCard(card.card));
     };

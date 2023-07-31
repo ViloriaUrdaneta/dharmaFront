@@ -38,7 +38,7 @@ export const userAccount = (id, token) => async (dispatch) => {
             dispatch(getAccount(response.data.account));
         }
     } catch (error) {
-        alert('error: ', error);
+        alert('Holi: ', error);
         console.log('error en catch', error);
     }
 };
@@ -61,7 +61,7 @@ export const rechargeAccount = (id, charge, token) => async (dispatch) => {
             dispatch(getAccount(response.data.account));
         }
     } catch (error) {
-        alert('error: ', error);
+        alert('error en rechargeAccount: ', error);
         console.log('error en catch', error);
     }
 };
@@ -169,7 +169,7 @@ export const userResume = (id, token) => async (dispatch) => {
             dispatch(setTransactionResume(response.data));
         }
     } catch (error) {
-        alert('error: ', error);
+        alert('holi: ', error);
         console.log('error en catch', error);
     }
 };

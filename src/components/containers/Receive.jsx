@@ -14,11 +14,12 @@ const Recieve = () => {
     const [message, setMessage] = useState('');
 
     const handleGift = () => {
-        dispatch(lastGiftReceived(pendings.transactions[0].id, message, token))
+        dispatch(lastGiftReceived(pendings.transactions[0].id, message, token));
+        window.location.reload(); 
     }
 
     useEffect(() => {
-        dispatch(userPendings(user.id, token))
+        dispatch(userPendings(user.id, token));
     }, [dispatch, handleGift]);
 
     return (

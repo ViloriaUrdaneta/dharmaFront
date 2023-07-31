@@ -87,7 +87,9 @@ const Balance = () => {
                                 {data && data.map((item) => (
                                     <tr key={item.id}>
                                         <td className="text-center">{item.message}</td>
-                                        <td className="text-center">{numberWithDots(item.amount)}</td>
+                                        {item.inOut === 'in' 
+                                            ? <td className="text-center text-success fw-bold">{numberWithDots(item.amount)}</td> 
+                                            : <td className="text-center text-danger fw-bold">{numberWithDots(item.amount)}</td>}
                                         <td className="text-center">{item.card}</td>
                                         <td className="text-center">{item.date}</td>
                                     </tr>
