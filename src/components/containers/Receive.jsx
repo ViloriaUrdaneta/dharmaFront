@@ -23,11 +23,10 @@ const Recieve = () => {
                 title: 'Error!',
                 text: 'Do you want to continue',
                 icon: 'error',
-                confirmButtonText: 'Cool'
-            })
-            setTimeout(() => {
+                confirmButtonText: 'Gracias'
+            }).then(result =>{
                 window.location.reload(); 
-            }, "3000");
+            })
         }else {
             Swal.fire({
                 title: 'Error!',
