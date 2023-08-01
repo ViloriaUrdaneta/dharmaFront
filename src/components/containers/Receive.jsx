@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/authContext.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { userPendings, lastGiftReceived } from '../../redux/thunks';
+import GiftCard from '../pure/GiftCard.jsx';
 import '../../App.css';
 
 
@@ -12,38 +13,43 @@ const Recieve = () => {
     const lastGift = useSelector((state) => state.dharma.lastReception)
     const dispatch = useDispatch();
     const [message, setMessage] = useState('');
+    console.log(pendings.transactions)
 
-    const handleGift = () => {
-        dispatch(lastGiftReceived(pendings.transactions[0].id, message, token));
-        window.location.reload(); 
+    const onGiftCardClick = (id) => {
+        if(message !== ''){
+            dispatch(lastGiftReceived(id, message, token));
+            window.location.reload(); 
+        }
     }
 
     useEffect(() => {
         dispatch(userPendings(user.id, token));
-    }, [dispatch, handleGift]);
+    }, [dispatch]);
 
     return (
         <div className='App'>
             <div className='container'>
                 {pendings.number > 0 ? (
                     <>
-                        <h1 className='subtitle2'>¡Recibiste {pendings.number} regalo!</h1>
-                        <input 
-                            type="text" 
-                            className="form-control col-md-4 mt-3 input centered-placeholder" 
-                            placeholder='Agradécelo para recibirlo'
-                            onChange={(e) => setMessage(e.target.value)}  
-                        />
-                        <hr className='line2 mx-auto' />
-                        <div className='d-grid d-md-flex justify-content-md-end'>
-                            <div className='d-grid col-2 mt-4 mx-auto'>
-                                <button 
-                                    class="btn btn-outline-danger btn-lg boton shadow shadow-sm"
-                                    onClick={handleGift}
-                                >
-                                    Enviar
-                                </button>
-                            </div>
+                        <div className='mb-3'>
+                        {pendings.number > 1 
+                            ? <h1 className='subtitle2'>¡Recibiste {pendings.number} regalos!</h1>
+                            : <h1 className='subtitle2'>¡Recibiste {pendings.number} regalo!</h1>
+                        }
+                        </div>
+                        <div className='row mt-5'>
+                            {pendings.transactions.map((pending) => (
+                                <div className='col-3' key={pending.id}>
+                                    <GiftCard 
+                                        onGiftCardClick={onGiftCardClick}
+                                        setMessage={setMessage}
+                                        card={pending.sender_card}
+                                        message={pending.sender_message}
+                                        id={pending.id}
+                                    >
+                                    </GiftCard>
+                                </div>
+                            ))}
                         </div>
                     </>
                 ) : (
