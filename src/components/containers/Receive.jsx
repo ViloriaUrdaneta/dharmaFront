@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/authContext.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { userPendings, lastGiftReceived } from '../../redux/thunks';
 import GiftCard from '../pure/GiftCard.jsx';
+import Swal from 'sweetalert2'
 import '../../App.css';
 
 
@@ -18,7 +19,22 @@ const Recieve = () => {
     const onGiftCardClick = (id) => {
         if(message !== ''){
             dispatch(lastGiftReceived(id, message, token));
-            window.location.reload(); 
+            Swal.fire({
+                title: 'Error!',
+                text: 'Do you want to continue',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+            setTimeout(() => {
+                window.location.reload(); 
+            }, "3000");
+        }else {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Do you want to continue',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
         }
     }
 
