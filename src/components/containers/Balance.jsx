@@ -77,20 +77,20 @@ const Balance = () => {
                         <table className="table tabla table-striped">
                             <thead>
                                 <tr>
+                                    <th className="text-center" scope="col">Carta</th>
                                     <th className="text-center" scope="col">Mensaje</th>
                                     <th className="text-center" scope="col">Monto</th>
-                                    <th className="text-center" scope="col">Carta</th>
                                     <th className="text-center" scope="col">Fecha</th>
                                 </tr>
                             </thead>
                             <tbody className=''>
                                 {data && data.map((item) => (
                                     <tr key={item.id}>
+                                        <td className="text-center">{item.card}</td>
                                         <td className="text-center">{item.message}</td>
                                         {item.inOut === 'in' 
                                             ? <td className="text-center text-success fw-bold">{numberWithDots(item.amount)}</td> 
                                             : <td className="text-center text-danger fw-bold">{numberWithDots(item.amount)}</td>}
-                                        <td className="text-center">{item.card}</td>
                                         <td className="text-center">{item.date}</td>
                                     </tr>
                                 ))}

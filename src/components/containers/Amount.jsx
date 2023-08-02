@@ -6,6 +6,7 @@ import '../../App.css';
 import { numberWithDots } from '../../utils/numberWithDot';
 import ErrorModal from '../modals/ErrorModal';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Amount = () => {
 
@@ -29,12 +30,22 @@ const Amount = () => {
 
 
     const handleAmount = () => {
-        if(amount <= monto){
+        if(amount <= monto && amount !== 0){
             console.log(amount)
             dispatch(giveAwayCharge(amount));
             navigate('/cards');
-        }else{
-            setOpenModal(true)
+        }else if (amount === 0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Monto agregado no válido',
+                text: 'Debes agregar un valor',
+            });
+        }else if (amount > monto){
+            Swal.fire({
+                icon: 'error',
+                title: 'Monto agregado no válido',
+                text: 'El monto que agregaste excede tu saldo actual',
+            });
         }
     }
 

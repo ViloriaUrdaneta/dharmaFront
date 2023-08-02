@@ -14,16 +14,17 @@ const Recieve = () => {
     const lastGift = useSelector((state) => state.dharma.lastReception)
     const dispatch = useDispatch();
     const [message, setMessage] = useState('');
-    console.log(pendings.transactions)
+    console.log(lastGift.transaction);
+
 
     const onGiftCardClick = (id) => {
         if(message !== ''){
             dispatch(lastGiftReceived(id, message, token));
             Swal.fire({
-                title: 'Error!',
-                text: 'Do you want to continue',
-                icon: 'error',
-                confirmButtonText: 'Gracias'
+                title: 'Acabas de Recibir un regalo',
+                //text: `Recibiste ${lastGift.transaction.amount}`,
+                icon: 'success',
+                confirmButtonText: 'Gracias!'
             }).then(result =>{
                 window.location.reload(); 
             })

@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { 
     account, 
     card,
@@ -38,8 +39,11 @@ export const userAccount = (id, token) => async (dispatch) => {
             dispatch(getAccount(response.data.account));
         }
     } catch (error) {
-        alert('Holi: ', error);
-        console.log('error en catch', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
     }
 };
 
@@ -61,33 +65,84 @@ export const rechargeAccount = (id, charge, token) => async (dispatch) => {
             dispatch(getAccount(response.data.account));
         }
     } catch (error) {
-        alert('error en rechargeAccount: ', error);
-        console.log('error en catch', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
     }
 };
 
 export const giveAwaySender = (id) => (dispatch) => {
-    dispatch(setGiveAwaySender(id))
+    try {
+        dispatch(setGiveAwaySender(id))
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
+    }
 };
 
 export const giveAwayReceiver = (id) => (dispatch) => {
-    dispatch(setGiveAwayReceiver(id))
+    try {
+        dispatch(setGiveAwayReceiver(id))
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
+    }
 };
 
 export const giveAwaySenderCard = (card) => (dispatch) => {
-    dispatch(setGiveAwaySenderCard(card))
+    try {
+        dispatch(setGiveAwaySenderCard(card))
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
+    }
 };
 
 export const giveAwayReceiverCard = (card) => (dispatch) => {
-    dispatch(setGiveAwayReceiverCard(card))
+    try {
+        dispatch(setGiveAwayReceiverCard(card))
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
+    }
 };
 
 export const giveAwayCharge= (charge) => (dispatch) => {
-    dispatch(setGiveAwayCharge(charge))
+    try {
+        dispatch(setGiveAwayCharge(charge))
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
+    }
 };
 
 export const giveAwayMessage = (message) => (dispatch) => {
-    dispatch(setGiveAwayMessage(message))
+    try {
+        dispatch(setGiveAwayMessage(message))
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
+    }
 };
 
 export const bringUserCard = (id, token) => async (dispatch) => {
@@ -103,8 +158,11 @@ export const bringUserCard = (id, token) => async (dispatch) => {
             dispatch(getUserCard(response.data.card));
         }
     } catch (error) {
-        alert('error: ', error);
-        console.log('error en catch', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
     }
 };
 
@@ -121,8 +179,11 @@ export const bringCards = (id, token) => async (dispatch) => {
             dispatch(getCards(response.data.randomCards));
         }
     } catch (error) {
-        alert('error: ', error);
-        console.log('error en catch', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
     }
 };
 
@@ -150,8 +211,11 @@ export const sendGiveAway = (giveAway, token) => async (dispatch) => {
             dispatch(setLastTransaction(response.data));
         }
     } catch (error) {
-        alert('error: ', error);
-        console.log('error en catch', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
     }
 };
 
@@ -169,8 +233,11 @@ export const userResume = (id, token) => async (dispatch) => {
             dispatch(setTransactionResume(response.data));
         }
     } catch (error) {
-        alert('holi: ', error);
-        console.log('error en catch', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
     }
 };
 
@@ -190,8 +257,11 @@ export const userPendings = (id, token) => async (dispatch) => {
             console.log("No hay valores de pendings disponibles.");
         }
     } catch (error) {
-        
-        console.log('epa', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
     }
 };
 
@@ -214,7 +284,10 @@ export const lastGiftReceived = (transactionId, message, token) => async (dispat
             dispatch(getLastReception(response.data));
         }
     } catch (error) {
-        alert('error: ', error);
-        console.log('error en catch', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${error.message}`,
+        });
     }
 };

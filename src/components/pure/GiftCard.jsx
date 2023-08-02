@@ -8,8 +8,6 @@ const GiftCard = ({ id, card, message, onGiftCardClick, setMessage }) => {
         onGiftCardClick(id);
     };
 
-    console.log(card)
-
     return (
         <div>
             <div className="card giftCard shadow shadow-lg mb-5 mt-5 mx-auto">
