@@ -253,8 +253,6 @@ export const userPendings = (id, token) => async (dispatch) => {
         const response = await pendingsReceives(id, config);
         if (response.status === 200) {
             dispatch(getPendings(response.data));
-        } else {
-            console.log("No hay valores de pendings disponibles.");
         }
     } catch (error) {
         Swal.fire({

@@ -1,9 +1,10 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { bringUserCard, userPendings } from '../../redux/thunks';
 import '../../App.css';
 import { Link } from 'react-router-dom';
+import { io } from 'socket.io-client';
 
 const Navbar = () => {
 
@@ -11,6 +12,15 @@ const Navbar = () => {
     const card = useSelector((state) => state.dharma.card);
     const pendings = useSelector((state) => state.dharma.pendings);
     const reduxDispatch = useDispatch();
+    //const [pending, setPending] = useState(false)
+
+    useEffect(() =>{
+        const socket = io("http://localhost:3001");
+        console.log(socket)
+        socket.on('firstEvent', (msg) => {
+            console.log(msg);
+        })
+    },[])
 
     useEffect(() => {
         reduxDispatch(bringUserCard(user.id, token));
